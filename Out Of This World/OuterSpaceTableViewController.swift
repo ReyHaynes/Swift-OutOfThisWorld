@@ -31,6 +31,13 @@ class OuterSpaceTableViewController: UITableViewController {
         var planet8 = "Neptune"
         
         self.planets = [planet1, planet2, planet3, planet4, planet5, planet6, planet7, planet8]
+        
+//        var myDictionary = [String:String]()
+//        myDictionary["firetruck color"] = "red"
+//        myDictionary["ocean color"] = "blue"
+//        myDictionary["star color"] = "yellow"
+//        println(myDictionary)
+//        println(myDictionary["ocean color"]!)
     }
 
     override func didReceiveMemoryWarning() {
