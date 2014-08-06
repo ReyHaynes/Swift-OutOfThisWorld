@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		339FE7761991B5580021DABF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339FE7751991B5580021DABF /* AppDelegate.swift */; };
-		339FE7781991B5580021DABF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339FE7771991B5580021DABF /* ViewController.swift */; };
 		339FE77B1991B5580021DABF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 339FE7791991B5580021DABF /* Main.storyboard */; };
 		339FE77D1991B5580021DABF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 339FE77C1991B5580021DABF /* Images.xcassets */; };
 		339FE7891991B5580021DABF /* Out_Of_This_WorldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339FE7881991B5580021DABF /* Out_Of_This_WorldTests.swift */; };
+		339FE7931991B62C0021DABF /* OuterSpaceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339FE7921991B62C0021DABF /* OuterSpaceTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,12 +28,12 @@
 		339FE7701991B5580021DABF /* Out Of This World.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Out Of This World.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		339FE7741991B5580021DABF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		339FE7751991B5580021DABF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		339FE7771991B5580021DABF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		339FE77A1991B5580021DABF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		339FE77C1991B5580021DABF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		339FE7821991B5580021DABF /* Out Of This WorldTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Out Of This WorldTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		339FE7871991B5580021DABF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		339FE7881991B5580021DABF /* Out_Of_This_WorldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Out_Of_This_WorldTests.swift; sourceTree = "<group>"; };
+		339FE7921991B62C0021DABF /* OuterSpaceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OuterSpaceTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,8 +76,8 @@
 			isa = PBXGroup;
 			children = (
 				339FE7751991B5580021DABF /* AppDelegate.swift */,
-				339FE7771991B5580021DABF /* ViewController.swift */,
 				339FE7791991B5580021DABF /* Main.storyboard */,
+				339FE7921991B62C0021DABF /* OuterSpaceTableViewController.swift */,
 				339FE77C1991B5580021DABF /* Images.xcassets */,
 				339FE7731991B5580021DABF /* Supporting Files */,
 			);
@@ -208,7 +208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				339FE7781991B5580021DABF /* ViewController.swift in Sources */,
+				339FE7931991B62C0021DABF /* OuterSpaceTableViewController.swift in Sources */,
 				339FE7761991B5580021DABF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
