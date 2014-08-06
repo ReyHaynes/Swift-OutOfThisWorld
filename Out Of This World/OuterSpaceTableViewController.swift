@@ -10,7 +10,7 @@ import UIKit
 
 class OuterSpaceTableViewController: UITableViewController {
     
-    var planets = []
+    var planets = [SpaceObject]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,23 +21,12 @@ class OuterSpaceTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        var planet1 = "Mercury"
-        var planet2 = "Venus"
-        var planet3 = "Earth"
-        var planet4 = "Mars"
-        var planet5 = "Jupiter"
-        var planet6 = "Saturn"
-        var planet7 = "Uranus"
-        var planet8 = "Neptune"
-        
-        self.planets = [planet1, planet2, planet3, planet4, planet5, planet6, planet7, planet8]
-        
-//        var myDictionary = [String:String]()
-//        myDictionary["firetruck color"] = "red"
-//        myDictionary["ocean color"] = "blue"
-//        myDictionary["star color"] = "yellow"
-//        println(myDictionary)
-//        println(myDictionary["ocean color"]!)
+        for planetData in AstronomicalData.allKnownPlanets() {
+            var imageName = "\(planetData[PLANET_NAME]).jpg"
+            var planet = SpaceObject(initWithData: planetData as NSDictionary, andImage: UIImage(named: imageName))
+            self.planets += [planet]
+        }
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,14 +51,15 @@ class OuterSpaceTableViewController: UITableViewController {
     override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
         
-        cell.textLabel.text = "\(self.planets[indexPath.row])"
+        //Configure the cell...
+        var planet = self.planets[indexPath.row]
+        cell.textLabel.text = planet.name!
+        cell.detailTextLabel.text = planet.nickname!
+        cell.imageView.image = planet.spaceImage!
         
-        if indexPath.section == 0 {
-            cell.backgroundColor = UIColor.redColor()
-        }
-        else {
-            cell.backgroundColor = UIColor.blueColor()
-        }
+        cell.backgroundColor = UIColor.clearColor()
+        cell.textLabel.textColor = UIColor.whiteColor()
+        cell.detailTextLabel.textColor = UIColor(white: 0.5, alpha: 1.0)
 
         return cell
     }
