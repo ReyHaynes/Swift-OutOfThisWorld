@@ -9,6 +9,8 @@
 import UIKit
 
 class OuterSpaceTableViewController: UITableViewController {
+    
+    var planets = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +20,17 @@ class OuterSpaceTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        var planet1 = "Mercury"
+        var planet2 = "Venus"
+        var planet3 = "Earth"
+        var planet4 = "Mars"
+        var planet5 = "Jupiter"
+        var planet6 = "Saturn"
+        var planet7 = "Uranus"
+        var planet8 = "Neptune"
+        
+        self.planets = [planet1, planet2, planet3, planet4, planet5, planet6, planet7, planet8]
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,13 +49,20 @@ class OuterSpaceTableViewController: UITableViewController {
     override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 3
+        return self.planets.count
     }
 
     override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
         
-        cell.textLabel.text = "Row #\(indexPath.row)"
+        cell.textLabel.text = "\(self.planets[indexPath.row])"
+        
+        if indexPath.section == 0 {
+            cell.backgroundColor = UIColor.redColor()
+        }
+        else {
+            cell.backgroundColor = UIColor.blueColor()
+        }
 
         return cell
     }
