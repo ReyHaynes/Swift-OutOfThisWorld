@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="ThA-Tx-2Te">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Jgm-Tp-ng7">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6190.4"/>
     </dependencies>
     <scenes>
-        <!--Outer Space Table View Controller-->
+        <!--Planets-->
         <scene sceneID="x2D-JG-8wf">
             <objects>
                 <tableViewController id="ThA-Tx-2Te" customClass="OuterSpaceTableViewController" customModule="Out_Of_This_World" customModuleProvider="target" sceneMemberID="viewController">
@@ -13,7 +13,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="bvx-9K-W9o" detailTextLabel="Eru-7Y-Sno" style="IBUITableViewCellStyleSubtitle" id="uiG-BJ-l1q">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" textLabel="bvx-9K-W9o" detailTextLabel="Eru-7Y-Sno" style="IBUITableViewCellStyleSubtitle" id="uiG-BJ-l1q">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uiG-BJ-l1q" id="fRp-PX-mW6">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -32,6 +32,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="a3a-Yw-nim" kind="push" id="rzF-Ni-vK5"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -39,8 +42,51 @@
                             <outlet property="delegate" destination="ThA-Tx-2Te" id="ziO-AI-J1W"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Planets" id="WRa-Fu-LDM"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="msq-P9-umD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="705" y="376"/>
+        </scene>
+        <!--Space Image View Controller-->
+        <scene sceneID="cWT-0S-Ng1">
+            <objects>
+                <viewController id="a3a-Yw-nim" customClass="SpaceImageViewController" customModule="Out_Of_This_World" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sqf-xF-DXE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="byo-NN-KjP">
+                                <rect key="frame" x="0.0" y="58" width="320" height="510"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="wjk-eD-nUy"/>
+                    <connections>
+                        <outlet property="scrollView" destination="byo-NN-KjP" id="7Jd-L8-GWi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8RO-IM-aKS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1153" y="376"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="kFU-Dm-YEa">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Jgm-Tp-ng7" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="tWZ-ht-kLJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ThA-Tx-2Te" kind="relationship" relationship="rootViewController" id="Edl-uy-vdC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2ea-gm-wpL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="244" y="376"/>
         </scene>
