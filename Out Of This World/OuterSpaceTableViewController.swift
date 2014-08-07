@@ -28,6 +28,16 @@ class OuterSpaceTableViewController: UITableViewController {
         }
 
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+        if sender.isKindOfClass(UITableViewCell) {
+            if segue.destinationViewController.isKindOfClass(SpaceImageViewController) {
+                var nextViewController = segue.destinationViewController as SpaceImageViewController
+                var path = self.tableView.indexPathForCell(sender as UITableViewCell)
+                nextViewController.spaceObject = self.planets[path.row]
+            }
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

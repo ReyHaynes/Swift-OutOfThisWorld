@@ -17,6 +17,7 @@ class SpaceImageViewController: UIViewController, UIScrollViewDelegate {
     //MARK: - Properties
     
     var imageView: UIImageView?
+    var spaceObject: SpaceObject?
     
     
     //MARK: - Overrides
@@ -24,7 +25,7 @@ class SpaceImageViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.imageView = UIImageView(image: UIImage(named: "Jupiter.jpg"))
+        self.imageView = UIImageView(image: self.spaceObject!.spaceImage!)
         
         self.scrollView.contentSize = self.imageView!.frame.size
         self.scrollView.addSubview(self.imageView!)
