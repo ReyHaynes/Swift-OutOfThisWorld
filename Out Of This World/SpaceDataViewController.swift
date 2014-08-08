@@ -40,28 +40,44 @@ class SpaceDataViewController: UIViewController, UITableViewDelegate, UITableVie
         switch indexPath.row {
             case 0:
                 cell.textLabel.text = "Nickname:"
-                cell.detailTextLabel.text = "\(self.spaceObject!.nickname!)"
+                if let nickname = self.spaceObject?.numberOfMoons? {
+                    cell.detailTextLabel.text = "\(nickname)"
+                }
             case 1:
                 cell.textLabel.text = "Diameter (km):"
-                cell.detailTextLabel.text = "\(self.spaceObject!.diameter!)"
+                if let diameter = self.spaceObject?.diameter? {
+                    cell.detailTextLabel.text = "\(diameter)"
+                }
             case 2:
                 cell.textLabel.text = "Gravitational Force:"
-                cell.detailTextLabel.text = "\(self.spaceObject!.gravitationalForce!)"
+                if let gravitationalForce = self.spaceObject?.gravitationalForce? {
+                    cell.detailTextLabel.text = "\(gravitationalForce)"
+                }
             case 3:
                 cell.textLabel.text = "Length of a Year (in days):"
-                cell.detailTextLabel.text = "\(self.spaceObject!.yearLength!)"
+                if let yearLength = self.spaceObject?.yearLength? {
+                    cell.detailTextLabel.text = "\(yearLength)"
+                }
             case 4:
                 cell.textLabel.text = "Length of a Day (in hours):"
-                cell.detailTextLabel.text = "\(self.spaceObject!.dayLength!)"
+                if let dayLength = self.spaceObject?.dayLength? {
+                    cell.detailTextLabel.text = "\(dayLength)"
+                }
             case 5:
                 cell.textLabel.text = "Temperature (in celsius):"
-                cell.detailTextLabel.text = "\(self.spaceObject!.temperature!)"
+                if let temperature = self.spaceObject?.temperature? {
+                    cell.detailTextLabel.text = "\(temperature)"
+                }
             case 6:
                 cell.textLabel.text = "Number of Moons:"
-                cell.detailTextLabel.text = "\(self.spaceObject!.numberOfMoons!)"
+                if let numberOfMoons = self.spaceObject?.numberOfMoons? {
+                    cell.detailTextLabel.text = "\(numberOfMoons)"
+                }
             case 7:
                 cell.textLabel.text = "Interesting Fact:"
-                cell.detailTextLabel.text = "\(self.spaceObject!.interestingFact!)"
+                if let interestingFact = self.spaceObject?.interestingFact? {
+                    cell.detailTextLabel.text = "\(interestingFact)"
+                }
             default: break
         }
         
