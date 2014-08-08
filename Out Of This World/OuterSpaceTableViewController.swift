@@ -37,6 +37,14 @@ class OuterSpaceTableViewController: UITableViewController {
                 nextViewController.spaceObject = self.planets[path.row]
             }
         }
+        
+        if sender.isKindOfClass(NSIndexPath) {
+            if segue.destinationViewController.isKindOfClass(SpaceDataViewController) {
+                var nextViewController = segue.destinationViewController as SpaceDataViewController
+                var path = sender as NSIndexPath
+                nextViewController.spaceObject = self.planets[path.row]
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,7 +52,7 @@ class OuterSpaceTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
+    // MARK: - UITableViewDataSource
 
     override func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
         // #warning Potentially incomplete method implementation.
@@ -72,6 +80,12 @@ class OuterSpaceTableViewController: UITableViewController {
         cell.detailTextLabel.textColor = UIColor(white: 0.5, alpha: 1.0)
 
         return cell
+    }
+    
+    //MARK: - UITableViewDelegate
+    
+    override func tableView(tableView: UITableView!, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath!) {
+        self.performSegueWithIdentifier("Push To Space Data", sender: indexPath)
     }
 
     /*

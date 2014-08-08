@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="qDz-EG-dxX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Jgm-Tp-ng7">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6190.4"/>
     </dependencies>
@@ -13,7 +13,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" textLabel="bvx-9K-W9o" detailTextLabel="Eru-7Y-Sno" style="IBUITableViewCellStyleSubtitle" id="uiG-BJ-l1q">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="Cell" textLabel="bvx-9K-W9o" detailTextLabel="Eru-7Y-Sno" style="IBUITableViewCellStyleSubtitle" id="uiG-BJ-l1q">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uiG-BJ-l1q" id="fRp-PX-mW6">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -43,6 +43,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Planets" id="WRa-Fu-LDM"/>
+                    <connections>
+                        <segue destination="qDz-EG-dxX" kind="push" identifier="Push To Space Data" id="YU2-PN-aMy"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="msq-P9-umD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -92,6 +95,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="epQ-om-rde"/>
                     <connections>
                         <outlet property="tableView" destination="wIb-7N-K3u" id="M5o-jd-lu5"/>
                     </connections>
