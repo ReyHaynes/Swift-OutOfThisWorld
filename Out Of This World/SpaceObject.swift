@@ -22,6 +22,10 @@ class SpaceObject: NSObject {
     
     var spaceImage:         UIImage?
     
+    init() {
+        
+    }
+    
     init(initWithData data:NSDictionary, andImage image:UIImage) {
         self.name = String(data[PLANET_NAME] as NSString)
         self.gravitationalForce = Float(data[PLANET_GRAVITY] as NSNumber)

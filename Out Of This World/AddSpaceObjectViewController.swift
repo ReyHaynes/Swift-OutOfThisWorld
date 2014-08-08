@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol AddSpaceObjectViewControllerDelegate {
+    func addSpaceObject(spaceObject: SpaceObject)
+    func didCancel()
+}
+
 class AddSpaceObjectViewController: UIViewController {
     
     //MARK: - Properties
@@ -29,7 +34,8 @@ class AddSpaceObjectViewController: UIViewController {
     }
     
     @IBAction func addButtonPressed(sender: UIButton) {
-        self.delegate!.addSpaceObject()
+        var newSpaceObject = self.returnNewSpaceObject()
+        self.delegate!.addSpaceObject(newSpaceObject)
     }
     
     //MARK: - Overrides / viewDidLoad
@@ -48,19 +54,20 @@ class AddSpaceObjectViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // MARK: - Helper Methods
+    
+    private func returnNewSpaceObject() -> SpaceObject {
+        var addedSpaceObject = SpaceObject()
+        addedSpaceObject.name = self.nameTextField.text
+        addedSpaceObject.nickname = self.nicknameTextField.text
+        // extension String .toFloat()
+        // addedSpaceObject.diameter = (self.diameterTextField.text as NSString).floatValue
+        addedSpaceObject.diameter = self.diameterTextField.text.toFloat()
+        addedSpaceObject.temperature = self.temperatureTextField.text.toFloat()
+        addedSpaceObject.numberOfMoons = self.numberOfMoonsTextField.text.toInt()
+        addedSpaceObject.interestingFact = self.interestingFactTextField.text
+        addedSpaceObject.spaceImage = UIImage(named: "EinsteinRing.jpg")
+        
+        return addedSpaceObject
     }
-    */
-}
-
-protocol AddSpaceObjectViewControllerDelegate {
-    func addSpaceObject()
-    func didCancel()
 }

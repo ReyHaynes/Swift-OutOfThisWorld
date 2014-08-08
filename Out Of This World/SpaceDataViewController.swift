@@ -40,7 +40,7 @@ class SpaceDataViewController: UIViewController, UITableViewDelegate, UITableVie
         switch indexPath.row {
             case 0:
                 cell.textLabel.text = "Nickname:"
-                if let nickname = self.spaceObject?.numberOfMoons? {
+                if let nickname = self.spaceObject?.nickname? {
                     cell.detailTextLabel.text = "\(nickname)"
                 }
             case 1:

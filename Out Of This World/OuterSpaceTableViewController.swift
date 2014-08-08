@@ -13,7 +13,7 @@ class OuterSpaceTableViewController: UITableViewController, AddSpaceObjectViewCo
     // MARK: - Properties
     
     var planets = [SpaceObject]()
-    var addedSpaceObjects = []
+    var addedSpaceObjects = [SpaceObject]()
     
     
     // MARK: - Overrides / viewDidLoad
@@ -45,7 +45,14 @@ class OuterSpaceTableViewController: UITableViewController, AddSpaceObjectViewCo
             if segue.destinationViewController.isKindOfClass(SpaceImageViewController) {
                 var nextViewController = segue.destinationViewController as SpaceImageViewController
                 var path = self.tableView.indexPathForCell(sender as UITableViewCell)
-                nextViewController.spaceObject = self.planets[path.row]
+                var selectedObject: SpaceObject?
+                if path.section == 0 {
+                    selectedObject = self.planets[path.row]
+                }
+                else if path.section == 1 {
+                    selectedObject = self.addedSpaceObjects[path.row]
+                }
+                nextViewController.spaceObject = selectedObject
             }
         }
         
@@ -53,7 +60,14 @@ class OuterSpaceTableViewController: UITableViewController, AddSpaceObjectViewCo
             if segue.destinationViewController.isKindOfClass(SpaceDataViewController) {
                 var nextViewController = segue.destinationViewController as SpaceDataViewController
                 var path = sender as NSIndexPath
-                nextViewController.spaceObject = self.planets[path.row]
+                var selectedObject: SpaceObject?
+                if path.section == 0 {
+                    selectedObject = self.planets[path.row]
+                }
+                else if path.section == 1 {
+                    selectedObject = self.addedSpaceObjects[path.row]
+                }
+                nextViewController.spaceObject = selectedObject
             }
         }
         
@@ -92,6 +106,10 @@ class OuterSpaceTableViewController: UITableViewController, AddSpaceObjectViewCo
         //Configure the cell...
         
         if indexPath.section == 1 {
+            var planet = self.addedSpaceObjects[indexPath.row]
+            cell.textLabel.text = planet.name!
+            cell.detailTextLabel.text = planet.nickname!
+            cell.imageView.image = planet.spaceImage!
             
         } else {
             var planet = self.planets[indexPath.row]
@@ -122,11 +140,13 @@ class OuterSpaceTableViewController: UITableViewController, AddSpaceObjectViewCo
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func addSpaceObject() {
+    func addSpaceObject(spaceObject: SpaceObject) {
+        self.addedSpaceObjects += spaceObject
         println("Add Space Object")
         self.dismissViewControllerAnimated(true, completion: nil)
+        
+        self.tableView.reloadData()
     }
-    
     
 
     /*
@@ -161,16 +181,6 @@ class OuterSpaceTableViewController: UITableViewController, AddSpaceObjectViewCo
     override func tableView(tableView: UITableView!, canMoveRowAtIndexPath indexPath: NSIndexPath!) -> Bool {
         // Return NO if you do not want the item to be re-orderable.
         return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
     }
     */
 
