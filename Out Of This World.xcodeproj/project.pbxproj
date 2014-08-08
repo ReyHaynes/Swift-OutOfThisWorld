@@ -25,6 +25,7 @@
 		339FE7AD1992BDE50021DABF /* Venus.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 339FE7A31992BDE50021DABF /* Venus.jpg */; };
 		339FE7AF1992BE3E0021DABF /* SpaceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339FE7AE1992BE3E0021DABF /* SpaceObject.swift */; };
 		339FE7B1199404F50021DABF /* SpaceImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339FE7B0199404F50021DABF /* SpaceImageViewController.swift */; };
+		339FE7B319944B880021DABF /* SpaceDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339FE7B219944B880021DABF /* SpaceDataViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		339FE7A31992BDE50021DABF /* Venus.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Venus.jpg; sourceTree = "<group>"; };
 		339FE7AE1992BE3E0021DABF /* SpaceObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpaceObject.swift; sourceTree = "<group>"; };
 		339FE7B0199404F50021DABF /* SpaceImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpaceImageViewController.swift; sourceTree = "<group>"; };
+		339FE7B219944B880021DABF /* SpaceDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpaceDataViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				339FE7791991B5580021DABF /* Main.storyboard */,
 				339FE7921991B62C0021DABF /* OuterSpaceTableViewController.swift */,
 				339FE7B0199404F50021DABF /* SpaceImageViewController.swift */,
+				339FE7B219944B880021DABF /* SpaceDataViewController.swift */,
 				339FE7AE1992BE3E0021DABF /* SpaceObject.swift */,
 				339FE77C1991B5580021DABF /* Images.xcassets */,
 				339FE7731991B5580021DABF /* Supporting Files */,
@@ -282,6 +285,7 @@
 				339FE7B1199404F50021DABF /* SpaceImageViewController.swift in Sources */,
 				339FE7971992A9FB0021DABF /* AstronomicalData.m in Sources */,
 				339FE7AF1992BE3E0021DABF /* SpaceObject.swift in Sources */,
+				339FE7B319944B880021DABF /* SpaceDataViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
