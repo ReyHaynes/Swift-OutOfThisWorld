@@ -8,9 +8,15 @@
 
 import UIKit
 
-class OuterSpaceTableViewController: UITableViewController {
+class OuterSpaceTableViewController: UITableViewController, AddSpaceObjectViewControllerDelegate {
+    
+    // MARK: - Properties
     
     var planets = [SpaceObject]()
+    var addedSpaceObjects = []
+    
+    
+    // MARK: - Overrides / viewDidLoad
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +35,11 @@ class OuterSpaceTableViewController: UITableViewController {
 
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
         if sender.isKindOfClass(UITableViewCell) {
             if segue.destinationViewController.isKindOfClass(SpaceImageViewController) {
@@ -45,35 +56,49 @@ class OuterSpaceTableViewController: UITableViewController {
                 nextViewController.spaceObject = self.planets[path.row]
             }
         }
+        
+        if segue.destinationViewController.isKindOfClass(AddSpaceObjectViewController) {
+            var addSpaceObjectVC = segue.destinationViewController as AddSpaceObjectViewController
+            addSpaceObjectVC.delegate = self
+        }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    
     // MARK: - UITableViewDataSource
 
     override func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return 1
+        if self.addedSpaceObjects.count > 0 {
+            return 2
+        } else {
+            return 1
+        }
     }
 
     override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return self.planets.count
+        if section == 1 {
+            return self.addedSpaceObjects.count
+        } else {
+            return self.planets.count
+        }
     }
 
     override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
         
         //Configure the cell...
-        var planet = self.planets[indexPath.row]
-        cell.textLabel.text = planet.name!
-        cell.detailTextLabel.text = planet.nickname!
-        cell.imageView.image = planet.spaceImage!
+        
+        if indexPath.section == 1 {
+            
+        } else {
+            var planet = self.planets[indexPath.row]
+            cell.textLabel.text = planet.name!
+            cell.detailTextLabel.text = planet.nickname!
+            cell.imageView.image = planet.spaceImage!
+        }
         
         cell.backgroundColor = UIColor.clearColor()
         cell.textLabel.textColor = UIColor.whiteColor()
@@ -82,11 +107,27 @@ class OuterSpaceTableViewController: UITableViewController {
         return cell
     }
     
+    
     //MARK: - UITableViewDelegate
     
     override func tableView(tableView: UITableView!, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath!) {
         self.performSegueWithIdentifier("Push To Space Data", sender: indexPath)
     }
+    
+    
+    // MARK: - AddSpaceObjectViewControllerDelegate
+    
+    func didCancel() {
+        println("Cancel")
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func addSpaceObject() {
+        println("Add Space Object")
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
 
     /*
     // Override to support conditional editing of the table view.
