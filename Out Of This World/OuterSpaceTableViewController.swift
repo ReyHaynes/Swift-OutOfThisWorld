@@ -12,26 +12,31 @@ class OuterSpaceTableViewController: UITableViewController, AddSpaceObjectViewCo
     
     // MARK: - Properties
     
+    let ADDED_SPACE_OBJECTS_KEY = "Added Space Objects Array"
+    
     var planets = [SpaceObject]()
     var addedSpaceObjects = [SpaceObject]()
+    
+    var userDefaults = NSUserDefaults.standardUserDefaults()
     
     
     // MARK: - Overrides / viewDidLoad
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         for planetData in AstronomicalData.allKnownPlanets() {
             var imageName = "\(planetData[PLANET_NAME]).jpg"
             var planet = SpaceObject(initWithData: planetData as NSDictionary, andImage: UIImage(named: imageName))
             self.planets += [planet]
         }
+        
+        if let spaceList = self.userDefaults.arrayForKey(ADDED_SPACE_OBJECTS_KEY) {
+            for spaceObjectItem in spaceList {
+                self.addedSpaceObjects += self.spaceObjectForDictionary(spaceObjectItem)
+            }
+        }
+        
 
     }
     
@@ -91,7 +96,6 @@ class OuterSpaceTableViewController: UITableViewController, AddSpaceObjectViewCo
     }
 
     override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
         // Return the number of rows in the section.
         if section == 1 {
             return self.addedSpaceObjects.count
@@ -133,7 +137,7 @@ class OuterSpaceTableViewController: UITableViewController, AddSpaceObjectViewCo
     }
     
     
-    // MARK: - AddSpaceObjectViewControllerDelegate
+    //MARK: - AddSpaceObjectViewControllerDelegate
     
     func didCancel() {
         println("Cancel")
@@ -142,46 +146,45 @@ class OuterSpaceTableViewController: UITableViewController, AddSpaceObjectViewCo
     
     func addSpaceObject(spaceObject: SpaceObject) {
         self.addedSpaceObjects += spaceObject
-        println("Add Space Object")
+        var spaceList = [AnyObject]()
+        var spaceObjectProperty = self.spaceObjectAsPropertyList(spaceObject)
+        if let spaceListArray = self.userDefaults.arrayForKey(ADDED_SPACE_OBJECTS_KEY) {
+            spaceList = spaceListArray + [spaceObjectProperty]
+        }
+        else {
+            spaceList = [spaceObjectProperty]
+        }
+        
+        self.userDefaults.setObject(spaceList, forKey: ADDED_SPACE_OBJECTS_KEY)
+        self.userDefaults.synchronize()
+        
         self.dismissViewControllerAnimated(true, completion: nil)
         
         self.tableView.reloadData()
     }
     
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView!, canEditRowAtIndexPath indexPath: NSIndexPath!) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
+    //MARK: - Helper Methods
+    
+    func spaceObjectAsPropertyList(spaceObject: SpaceObject) -> [String: AnyObject] {
+        var dictionary: [String: AnyObject] = [:]
+        if let item = spaceObject.name { dictionary[PLANET_NAME] = item }
+        if let item = spaceObject.gravitationalForce { dictionary[PLANET_GRAVITY] = item }
+        if let item = spaceObject.diameter { dictionary[PLANET_DIAMETER] = item }
+        if let item = spaceObject.yearLength { dictionary[PLANET_YEAR_LENGTH] = item }
+        if let item = spaceObject.dayLength { dictionary[PLANET_DAY_LENGTH] = item }
+        if let item = spaceObject.temperature { dictionary[PLANET_TEMPERATURE] = item }
+        if let item = spaceObject.numberOfMoons { dictionary[PLANET_NUMBER_OF_MOONS] = item }
+        if let item = spaceObject.nickname { dictionary[PLANET_NICKNAME] = item }
+        if let item = spaceObject.interestingFact { dictionary[PLANET_INTERESTING_FACT] = item }
+        //TODO: - Uncomment to save image to propertylist
+//        if let item = spaceObject.spaceImage { dictionary[PLANET_IMAGE] = UIImagePNGRepresentation(item) }
+        
+        return dictionary
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    func spaceObjectForDictionary(dictionary: AnyObject) -> SpaceObject {
+        var spaceObject = SpaceObject(initWithData: dictionary as NSDictionary, andImage: UIImage(named: "EinsteinRing.jpg"))
+        return spaceObject
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView!, moveRowAtIndexPath fromIndexPath: NSIndexPath!, toIndexPath: NSIndexPath!) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView!, canMoveRowAtIndexPath indexPath: NSIndexPath!) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
+    
 }

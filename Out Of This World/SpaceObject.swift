@@ -27,15 +27,15 @@ class SpaceObject: NSObject {
     }
     
     init(initWithData data:NSDictionary, andImage image:UIImage) {
-        self.name = String(data[PLANET_NAME] as NSString)
-        self.gravitationalForce = Float(data[PLANET_GRAVITY] as NSNumber)
-        self.diameter = Float(data[PLANET_DIAMETER] as NSNumber)
-        self.yearLength = Float(data[PLANET_YEAR_LENGTH] as NSNumber)
-        self.dayLength = Float(data[PLANET_DAY_LENGTH] as NSNumber)
-        self.temperature = Float(data[PLANET_TEMPERATURE] as NSNumber)
-        self.numberOfMoons = Int(data[PLANET_NUMBER_OF_MOONS] as NSNumber)
-        self.nickname = String(data[PLANET_NICKNAME] as NSString)
-        self.interestingFact = String(data[PLANET_INTERESTING_FACT] as NSString)
+        if data[PLANET_NAME] { self.name = String(data[PLANET_NAME] as NSString) }
+        if data[PLANET_GRAVITY] { self.gravitationalForce = Float(data[PLANET_GRAVITY] as NSNumber) }
+        if data[PLANET_DIAMETER] { self.diameter = Float(data[PLANET_DIAMETER] as NSNumber) }
+        if data[PLANET_YEAR_LENGTH] { self.yearLength = Float(data[PLANET_YEAR_LENGTH] as NSNumber) }
+        if data[PLANET_DAY_LENGTH] { self.dayLength = Float(data[PLANET_DAY_LENGTH] as NSNumber) }
+        if data[PLANET_TEMPERATURE] { self.temperature = Float(data[PLANET_TEMPERATURE] as NSNumber) }
+        if data[PLANET_NUMBER_OF_MOONS] { self.numberOfMoons = Int(data[PLANET_NUMBER_OF_MOONS] as NSNumber) }
+        if data[PLANET_NICKNAME] { self.nickname = String(data[PLANET_NICKNAME] as NSString) }
+        if data[PLANET_INTERESTING_FACT] { self.interestingFact = String(data[PLANET_INTERESTING_FACT] as NSString) }
         
         self.spaceImage = image
     }
