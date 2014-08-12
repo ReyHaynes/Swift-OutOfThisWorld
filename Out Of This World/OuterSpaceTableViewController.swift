@@ -40,6 +40,7 @@ class OuterSpaceTableViewController: UITableViewController, AddSpaceObjectViewCo
 
     }
     
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -137,6 +138,43 @@ class OuterSpaceTableViewController: UITableViewController, AddSpaceObjectViewCo
     }
     
     
+    //MARK: - UITableViewOptionals
+    
+    override func tableView(tableView: UITableView!, canEditRowAtIndexPath indexPath: NSIndexPath!) -> Bool {
+        if indexPath.section == 0 { return false }
+        else { return true }
+    }
+    
+    override func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!) {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            
+            //Delete from array
+            self.addedSpaceObjects.removeAtIndex(indexPath.row)
+
+            //Delete from persistent property list
+            var newSpaceList = [AnyObject]()
+            
+            if self.addedSpaceObjects.count != 0 {
+                for spaceObject in self.addedSpaceObjects {
+                    newSpaceList += [self.spaceObjectAsPropertyList(spaceObject)]
+                    self.userDefaults.setObject(newSpaceList, forKey: ADDED_SPACE_OBJECTS_KEY)
+                    //Delete Row
+                    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+                }
+            } else {
+                self.userDefaults.setObject(newSpaceList, forKey: ADDED_SPACE_OBJECTS_KEY)
+                //Delete Section if row is empty (Quirk with empty rows).
+                tableView.deleteSections(NSIndexSet(index: indexPath.section), withRowAnimation: UITableViewRowAnimation.Fade)
+            }
+            self.userDefaults.synchronize()
+            
+            //Reload Row
+            tableView.reloadData()
+        }
+    }
+    
+    
+    
     //MARK: - AddSpaceObjectViewControllerDelegate
     
     func didCancel() {
@@ -183,6 +221,8 @@ class OuterSpaceTableViewController: UITableViewController, AddSpaceObjectViewCo
     }
     
     func spaceObjectForDictionary(dictionary: AnyObject) -> SpaceObject {
+        //TODO: - Replace UIImage with uncommented property
+//        var image = UIImage(data: dictionary[PLANET_IMAGE] as NSData)
         var spaceObject = SpaceObject(initWithData: dictionary as NSDictionary, andImage: UIImage(named: "EinsteinRing.jpg"))
         return spaceObject
     }
