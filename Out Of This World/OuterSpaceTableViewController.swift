@@ -33,7 +33,7 @@ class OuterSpaceTableViewController: UITableViewController, AddSpaceObjectViewCo
         
         if let spaceList = self.userDefaults.arrayForKey(ADDED_SPACE_OBJECTS_KEY) {
             for spaceObjectItem in spaceList {
-                self.addedSpaceObjects += self.spaceObjectForDictionary(spaceObjectItem)
+                self.addedSpaceObjects += [self.spaceObjectForDictionary(spaceObjectItem)]
             }
         }
         
@@ -183,7 +183,7 @@ class OuterSpaceTableViewController: UITableViewController, AddSpaceObjectViewCo
     }
     
     func addSpaceObject(spaceObject: SpaceObject) {
-        self.addedSpaceObjects += spaceObject
+        self.addedSpaceObjects += [spaceObject]
         var spaceList = [AnyObject]()
         var spaceObjectProperty = self.spaceObjectAsPropertyList(spaceObject)
         if let spaceListArray = self.userDefaults.arrayForKey(ADDED_SPACE_OBJECTS_KEY) {
